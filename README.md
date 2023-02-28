@@ -1,4 +1,3 @@
-
 ![proxmox-dietpi](https://user-images.githubusercontent.com/67932890/213890139-61bd9c23-4ed2-49f2-a627-0b303d0a4f8f.png)
 
 # Proxmox DietPi Installer
@@ -10,20 +9,25 @@ A Proxmox Helper Script to install DietPi in Proxmox.
 ### Download the script to your Proxmox host by cloning the repo or using `wget`
 
 ```sh
-git clone https://github.com/dazeb/proxmox-dietpi-installer.git
+git clone --branch production --single-branch https://github.com/rapjul/proxmox-dietpi-installer
 ```
 
 cd into the folder, make the file executable then run the script
+
 ```sh
 cd proxmox-dietpi-installer
 chmod +x dietpi-install.sh
 ./dietpi-install.sh
 ```
+
 ### You can also download the script with `wget`
+
 ```sh
 wget https://raw.githubusercontent.com/dazeb/proxmox-dietpi-installer/main/dietpi-install.sh
 ```
+
 Make the file executable then run the script
+
 ```sh
 chmod +x dietpi-install.sh
 ./dietpi-install.sh
