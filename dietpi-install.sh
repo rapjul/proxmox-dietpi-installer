@@ -4,9 +4,11 @@
 IMAGE_URL=$(whiptail --inputbox 'Enter the URL for the DietPi image (default: https://dietpi.com/downloads/images/DietPi_Proxmox-x86_64-Bullseye.7z):' 8 78 'https://dietpi.com/downloads/images/DietPi_Proxmox-x86_64-Bullseye.7z' --title 'DietPi Installation' 3>&1 1>&2 2>&3)
 RAM=$(whiptail --inputbox 'Enter the amount of RAM (in MB) for the new virtual machine (default: 2048):' 8 78 2048 --title 'DietPi Installation' 3>&1 1>&2 2>&3)
 CORES=$(whiptail --inputbox 'Enter the number of cores for the new virtual machine (default: 2):' 8 78 2 --title 'DietPi Installation' 3>&1 1>&2 2>&3)
+ON_BOOT=$(whiptail --yesno 'Should the VM be started during system bootup?' 8 78 --title 'DietPi Installation' 3>&1 1>&2 2>&3)
 
 # Get the next available VMID
-ID=$(pvesh get /cluster/nextid)
+ID_NEXT=$(pvesh get /cluster/nextid)
+ID=$(whiptail --inputbox 'Enter the desired ID number of the VM:' 8 78 "$ID_NEXT" --title 'DietPi Installation' 3>&1 1>&2 2>&3)
 
 touch "/etc/pve/qemu-server/$ID.conf"
 
@@ -32,6 +34,8 @@ qm set "$ID" --net0 'virtio,bridge=vmbr0'
 qm set "$ID" --scsi0 "$STORAGE:vm-$ID-disk-0"
 qm set "$ID" --boot order='scsi0'
 qm set "$ID" --scsihw virtio-scsi-pci
+qm set "$ID" --onboot "$ON_BOOT"
+qm set "$ID" --agent enabled=1
 qm set "$ID" --name "dietpi" >/dev/null
 qm set "$ID" --description "### [DietPi](https://dietpi.com)
 ### [DietPi Forums](https://dietpi.com/forum)
