@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "timonwong.shellcheck",
+    "jeff-hykin.better-shellscript-syntax",
+    "dotenv.dotenv-vscode",
+  ]
+}
