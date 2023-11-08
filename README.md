@@ -10,6 +10,7 @@ A Proxmox Helper Script to install DietPi in Proxmox.
 
 ```sh
 bash <(curl -sSfL https://raw.githubusercontent.com/rapjul/proxmox-dietpi-installer/production/dietpi-install.sh)
+```
 
 ### Download the script to your Proxmox host by cloning the repo or using `wget`
 
